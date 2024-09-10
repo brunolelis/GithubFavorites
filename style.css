@@ -66,13 +66,17 @@ header h1 {
 .search input {
   height: 3.2rem;
   border: 1px solid #cccc;
-  border-radius: .4rem 0 0 .4rem;
-  padding: 0 .8rem;
+  border-radius: .5rem;
+  padding: 1.6rem;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search button {
   background-color: var(--primary-color);
-  border-radius: 0 .4rem .4rem 0;
+  border-radius: .5rem;
   height: 3.2rem;
   border: none;
   padding: 0 1rem;
@@ -152,4 +156,6 @@ td .remove {
   border: none;
 
   color: red;
+
+  cursor: pointer;
 }
