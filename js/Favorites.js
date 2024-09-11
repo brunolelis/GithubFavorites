@@ -16,7 +16,7 @@ export class Favorites {
 
   async add(username) {
     try {
-      const userExists = this.entries.find(entry => entry.login === username)
+      const userExists = this.entries.find(entry => entry.login.toLowerCase() === username.toLowerCase())
 
       if (userExists) throw new Error('User already exists!')
 
@@ -55,14 +55,25 @@ export class FavoritesView extends Favorites {
 
   onadd() {
     const addButton = this.root.querySelector('.search button')
+    const inputField = this.root.querySelector('.search input')
+
     addButton.onclick = () => {
-      const { value } = this.root.querySelector('.search input')
-      this.add(value)
+      const { value } = inputField
+      if (value) {
+        this.add(value)
+        inputField.value = ''
+      }
     }
   }
 
   update() {
     this.removeAllTr()
+
+    if (this.entries.length === 0) {
+      const emptyList = this.emptyList();
+      this.tbody.append(emptyList)
+      return
+    }
 
     this.entries.forEach(user => {
       const row = this.createRow()
@@ -71,7 +82,7 @@ export class FavoritesView extends Favorites {
       row.querySelector('.user img').alt = `Imagem de ${user.name}`
       row.querySelector('.user p').textContent = user.name
       row.querySelector('.user a').href = `https://github.com/${user.login}`
-      row.querySelector('.user span').textContent = user.login
+      row.querySelector('.user span').textContent = '/' + user.login
       row.querySelector('.repositories').textContent = user.public_repos
       row.querySelector('.followers').textContent = user.followers
 
@@ -79,6 +90,22 @@ export class FavoritesView extends Favorites {
 
       this.tbody.append(row)
     })
+  }
+
+  emptyList() {
+    const tr = document.createElement('tr')
+    tr.classList.add('empty-tr')
+
+    tr.innerHTML = `
+      <td colspan="4">
+        <div class="empty-message">
+          <img src="./images/star-table.svg" alt="Star icon">
+          Nenhum favorito ainda
+        </div>
+      </td>
+    `
+
+    return tr
   }
 
   createRow() {
@@ -99,7 +126,7 @@ export class FavoritesView extends Favorites {
         96569
       </td>
       <td>
-        <button class="remove">&times;</button>
+        <button class="remove">Remover</button>
       </td>
     `
 

@@ -10,7 +10,7 @@
   <title>Git Hub Favorites</title>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
@@ -21,12 +21,13 @@
   <div id="app">
 
     <header>
-      <h1>Github Favorites</h1>
+      <img src="/images/logo.svg" alt="GitFav Logo">
+
       <div class="search">
         <label class="sr-only" for="input-search">Digite o Github username que quer favoritar</label>
         <input id="input-search" type="text" placeholder="Digite o Github username que quer favoritar">
 
-        <button>&plus;</button>
+        <button><img src="./images/star.svg" alt=""> Favoritar</button>
       </div>
     </header>
 
@@ -34,10 +35,10 @@
 
       <thead>
         <tr>
-          <th>Usuários</th>
-          <th>Repositórios</th>
+          <th>Users</th>
+          <th>Repositories</th>
           <th>Followers</th>
-          <th></th>
+          <th>Action</th>
         </tr>
       </thead>
 
